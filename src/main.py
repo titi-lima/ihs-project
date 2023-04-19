@@ -1,7 +1,11 @@
-from utils.buttons import ButtonController
+from utils.switches import SwitchController
 
-button_controller = ButtonController()
+switch_controller = SwitchController()
 
-button_array = button_controller.get_button_array()
+switch_array = switch_controller.get_switch_array()
 
-print(button_array)
+print(switch_array)
+
+switch_value = switch_controller.get_switch_value(2)
+
+print(switch_value)
