@@ -1,4 +1,4 @@
-from utils.switches import SwitchController
+from mock.switches import SwitchController
 
 switch_controller = SwitchController()
 
