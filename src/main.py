@@ -3,15 +3,12 @@ import random
 
 from mock.switches import SwitchController
 
-switch_controller = SwitchController()
+switch_controller = SwitchController("000000001000000110")
 
 # Função para gerar um novo número aleatório
 def gerar_numero_aleatorio():
     global numero_aleatorio
-    # Define a cor do retângulo a ser desenhado para apagar o número anterior
-    cor_fundo = (0, 0, 0)
-    # Desenha um retângulo preenchido na posição do número anterior
-    pygame.draw.rect(screen, cor_fundo, (posicao_texto[0] - 50, posicao_texto[1] - 50, 100, 100))
+    screen.fill((0, 0, 0))
     numero_aleatorio = random.randint(1, 100)
     # Renderiza o novo número aleatório como um texto
     texto_numero = fonte.render(str(numero_aleatorio), True, (255, 255, 255))
@@ -42,6 +39,11 @@ pygame.display.set_caption("Meu Jogo")
 # Cria uma fonte Pygame
 fonte = pygame.font.Font(None, 36)
 
+# Cria uma caixa de texto
+caixa_retangulo = pygame.Rect(50, 150, 200, 50)
+texto_digitado = ""
+caixa_foco = False
+
 # Renderiza o número aleatório como um texto
 texto_numero = fonte.render(str(numero_aleatorio), True, (255, 255, 255))
 
@@ -58,7 +60,23 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if caixa_retangulo.collidepoint(event.pos):
+                caixa_foco = True
+            else:
+                caixa_foco = False
         elif event.type == pygame.KEYDOWN:
+            if caixa_foco:
+                if event.key == pygame.K_BACKSPACE:
+                    texto_digitado = texto_digitado[:-1]
+                elif event.key == pygame.K_RETURN:
+                    print(texto_digitado)
+                    # Define o valor dos switches
+                    switch_controller.set_switch_array_value("{0:b}".format(int(texto_digitado, 2)).zfill(18))
+                    print(switch_controller.get_switch_array())
+                    texto_digitado = ""
+                else:
+                    texto_digitado += event.unicode
             if event.key == pygame.K_RETURN:
                 # Gerar um novo número aleatório quando o usuário pressiona Enter
                 number_1 = switch_controller.get_switch_number_1()
@@ -71,6 +89,12 @@ while running:
                 print("Score 1: " + str(score_1))
                 print("Score 2: " + str(score_2))
 
+    # Desenha a caixa de texto
+    pygame.draw.rect(screen, (255, 255, 255), caixa_retangulo)
+    if caixa_foco:
+        pygame.draw.rect(screen, (0, 0, 255), caixa_retangulo, 2)
+        texto_caixa = fonte.render(texto_digitado, True, (0, 0, 0))
+        screen.blit(texto_caixa, (caixa_retangulo.x + 10, caixa_retangulo.y + 10))
 
     # Atualiza a tela do jogo
     pygame.display.update()
