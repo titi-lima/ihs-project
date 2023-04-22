@@ -20,7 +20,7 @@ class ScreenController:
         self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
 
         # Define o título da janela
-        pygame.display.set_caption("Meu Jogo")
+        pygame.display.set_caption("Batalha de Bits")
 
         # Define as posições dos círculos
         self.circles_1 = [{'x': 50 + i * 25, 'y': self.screen_height - 100, 'color': (128, 128, 128)} for i in range(9)]
