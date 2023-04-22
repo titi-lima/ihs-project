@@ -1,6 +1,10 @@
 import pygame
 import random
 
+from mock.switches import SwitchController
+
+switch_controller = SwitchController()
+
 # Função para gerar um novo número aleatório
 def gerar_numero_aleatorio():
     global numero_aleatorio
@@ -20,6 +24,10 @@ def gerar_numero_aleatorio():
 numero_aleatorio = random.randint(1, 100)
 
 pygame.init()
+
+# Define o score dos jogadores
+score_1 = 0
+score_2 = 0
 
 # Define as dimensões da janela
 screen_width = 800
@@ -53,8 +61,15 @@ while running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 # Gerar um novo número aleatório quando o usuário pressiona Enter
+                number_1 = switch_controller.get_switch_number_1()
+                number_2 = switch_controller.get_switch_number_2()
+                if number_1 == numero_aleatorio:
+                    score_1 += 1
+                if number_2 == numero_aleatorio:
+                    score_2 += 1
                 gerar_numero_aleatorio()
-
+                print("Score 1: " + str(score_1))
+                print("Score 2: " + str(score_2))
 
 
     # Atualiza a tela do jogo
