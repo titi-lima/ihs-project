@@ -1,5 +1,6 @@
 import pygame
 import random
+from controllers.hits import HitsController
 from controllers.screen import ScreenController
 
 from mock.switches import SwitchController
@@ -9,7 +10,6 @@ switch_controller = SwitchController("000000001000000110")
 # Função para gerar um novo número aleatório
 def gerar_numero_aleatorio():
     global numero_aleatorio
-    screen_controller.reset_screen()
     numero_aleatorio = random.randint(1, 100)
     # Renderiza e desenha o número aleatório na tela
     screen_controller.draw_text_center(str(numero_aleatorio))
@@ -22,6 +22,8 @@ numero_aleatorio = random.randint(1, 100)
 pygame.init()
 
 screen_controller = ScreenController()
+
+hits_controller = HitsController(screen_controller)
 
 # Cria uma caixa de texto
 caixa_retangulo = pygame.Rect(50, 150, 200, 50)
@@ -62,13 +64,18 @@ while running:
                 else:
                     texto_digitado += event.unicode
             if event.key == pygame.K_RETURN:
-                # Gerar um novo número aleatório quando o usuário pressiona Enter
+                screen_controller.reset_screen()
+                # Converte o número aleatório para binário com 9 bits
+                numero = "{0:b}".format(numero_aleatorio).zfill(9)
+                hits_controller.check_hits(switch_controller, numero)
+                # Verifica se o número digitado é igual ao número aleatório
                 number_1 = switch_controller.get_switch_number_1()
                 number_2 = switch_controller.get_switch_number_2()
                 if number_1 == numero_aleatorio:
                     screen_controller.score_1 += 1
                 if number_2 == numero_aleatorio:
                     screen_controller.score_2 += 1
+                # Gerar um novo número aleatório quando o usuário pressiona Enter
                 gerar_numero_aleatorio()
     
     # Desenha os scores na tela
