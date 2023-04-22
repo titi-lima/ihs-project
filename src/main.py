@@ -77,6 +77,8 @@ while running:
                     screen_controller.score_2 += 1
                 # Gerar um novo número aleatório quando o usuário pressiona Enter
                 gerar_numero_aleatorio()
+                # Aumenta a fase do jogo
+                screen_controller.increase_phase()
     
     # Desenha os scores na tela
     screen_controller.draw_text(str(screen_controller.score_1), (50, screen_controller.screen_height - 50))

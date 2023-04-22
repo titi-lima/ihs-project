@@ -2,6 +2,9 @@ import pygame
 
 class ScreenController:
     def __init__(self):
+        # Define a fase do jogo
+        self.phase = 1
+
         # Define o score dos jogadores
         self.score_1 = 0
         self.score_2 = 0
@@ -53,6 +56,18 @@ class ScreenController:
         # Define a cor de um círculo específico
         circle = self.circles_1[circle_index]
         pygame.draw.circle(self.screen, color, (circle['x'], circle['y']), 10)
+
+    def increase_phase(self):
+        # Aumenta a fase do jogo
+        self.phase += 1
+        # Define as posições dos círculos
+        self.circles_1 = [{'x': 50 + i * 25, 'y': self.screen_height - 100 - 15 * (self.phase), 'color': (128, 128, 128)} for i in range(9)]
+        self.circles_2 = [{'x': self.screen_width - 50 - 8 * 25 + i * 25, 'y': self.screen_height - 100 - 15 * (self.phase), 'color': (128, 128, 128)} for i in range(9)]
+
+        self.draw_circles(self.circles_1)
+        self.draw_circles(self.circles_2)
+        self.phase += 1
+        return self.phase
     
     def reset_screen(self):
         # Define a cor de fundo da tela
