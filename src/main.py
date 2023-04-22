@@ -32,11 +32,8 @@ caixa_foco = False
 screen_controller.draw_text_center(str(numero_aleatorio))
 
 # Desenha os scores na tela
-texto_score_1 = screen_controller.fonte.render(str(screen_controller.score_1), True, (255, 255, 255))
-screen_controller.screen.blit(texto_score_1, (50, screen_controller.screen_height - 50))
-
-texto_score_2 = screen_controller.fonte.render(str(screen_controller.score_2), True, (255, 255, 255))
-screen_controller.screen.blit(texto_score_2, (screen_controller.screen_width -  50, screen_controller.screen_height - 50))
+screen_controller.draw_text(str(screen_controller.score_1), (50, screen_controller.screen_height - 50))
+screen_controller.draw_text(str(screen_controller.score_2), (screen_controller.screen_width -  50, screen_controller.screen_height - 50))
 
 # Atualiza a tela do jogo
 pygame.display.update()
@@ -73,15 +70,10 @@ while running:
                 if number_2 == numero_aleatorio:
                     screen_controller.score_2 += 1
                 gerar_numero_aleatorio()
-                print("Score 1: " + str(screen_controller.score_1))
-                print("Score 2: " + str(screen_controller.score_2))
     
     # Desenha os scores na tela
-    texto_score_1 = screen_controller.fonte.render(str(screen_controller.score_1), True, (255, 255, 255))
-    screen_controller.screen.blit(texto_score_1, (50, screen_controller.screen_height - 50))
-
-    texto_score_2 = screen_controller.fonte.render(str(screen_controller.score_2), True, (255, 255, 255))
-    screen_controller.screen.blit(texto_score_2, (screen_controller.screen_width - 50, screen_controller.screen_height - 50))
+    screen_controller.draw_text(str(screen_controller.score_1), (50, screen_controller.screen_height - 50))
+    screen_controller.draw_text(str(screen_controller.score_2), (screen_controller.screen_width -  50, screen_controller.screen_height - 50))
 
     # Desenha a caixa de texto
     pygame.draw.rect(screen_controller.screen, (255, 255, 255), caixa_retangulo)
