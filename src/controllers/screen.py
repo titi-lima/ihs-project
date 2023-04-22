@@ -1,5 +1,4 @@
 import pygame
-import random
 
 class ScreenController:
     def __init__(self):

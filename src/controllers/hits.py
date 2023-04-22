@@ -1,5 +1,3 @@
-import pygame
-
 class HitsController:
     def __init__(self, screen_controller):
         self.screen_controller = screen_controller
