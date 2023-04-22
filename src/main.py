@@ -51,6 +51,13 @@ texto_numero = fonte.render(str(numero_aleatorio), True, (255, 255, 255))
 posicao_texto = (screen_width // 2, screen_height // 2)
 screen.blit(texto_numero, posicao_texto)
 
+# Desenha os scores na tela
+texto_score_1 = fonte.render(str(score_1), True, (255, 255, 255))
+screen.blit(texto_score_1, (50, screen_height - 50))
+
+texto_score_2 = fonte.render(str(score_2), True, (255, 255, 255))
+screen.blit(texto_score_2, (screen_width -  50, screen_height - 50))
+
 # Atualiza a tela do jogo
 pygame.display.update()
 
@@ -88,6 +95,13 @@ while running:
                 gerar_numero_aleatorio()
                 print("Score 1: " + str(score_1))
                 print("Score 2: " + str(score_2))
+    
+    # Desenha os scores na tela
+    texto_score_1 = fonte.render(str(score_1), True, (255, 255, 255))
+    screen.blit(texto_score_1, (50, screen_height - 50))
+
+    texto_score_2 = fonte.render(str(score_2), True, (255, 255, 255))
+    screen.blit(texto_score_2, (screen_width - 50, screen_height - 50))
 
     # Desenha a caixa de texto
     pygame.draw.rect(screen, (255, 255, 255), caixa_retangulo)
