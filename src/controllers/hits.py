@@ -14,6 +14,7 @@ class HitsController:
         for i in range(9):
             if switch_controller.get_switch_value(i) == target[i]:
                 circles_1[i]['color'] = (0, 255, 0)
+                self.screen_controller.hits_1 += 1
             else:
                 circles_1[i]['color'] = (255, 0, 0)
 
@@ -21,6 +22,7 @@ class HitsController:
         for i in range(9):
             if switch_controller.get_switch_value(i + 9) == target[i]:
                 circles_2[i]['color'] = (0, 255, 0)
+                self.screen_controller.hits_2 += 1
             else:
                 circles_2[i]['color'] = (255, 0, 0)
 

@@ -6,6 +6,9 @@ class ScreenController:
         self.score_1 = 0
         self.score_2 = 0
 
+        self.hits_1 = 0
+        self.hits_2 = 0
+
         # Define as dimensões da janela
         self.screen_width = 800
         self.screen_height = 600
