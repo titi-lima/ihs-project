@@ -19,6 +19,18 @@ def gerar_numero_aleatorio():
     # Atualiza toda a tela
     pygame.display.flip()
 
+def encerrar_jogo():
+    finishing = True
+    while finishing:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                finishing = False
+        screen_controller.reset_screen()
+        screen_controller.draw_text_center("O jogador x ganhou, com y acertos e z hits bits corretos")
+        pygame.display.update()
+    pygame.quit()
+
+
 # Gera o número aleatório
 numero_aleatorio = random.randint(1, 100)
 
@@ -61,6 +73,7 @@ while running:
                 gerar_numero_aleatorio()
                 # Aumenta a fase do jogo
                 if screen_controller.phase > 13:
+                    encerrar_jogo()
                     running = False
                 else:
                     screen_controller.increase_phase()
