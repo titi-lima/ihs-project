@@ -26,7 +26,24 @@ def encerrar_jogo():
             if event.type == pygame.QUIT:
                 finishing = False
         screen_controller.reset_screen()
-        screen_controller.draw_text_center("O jogador x ganhou, com y acertos e z hits bits corretos")
+        if screen_controller.score_1 > screen_controller.score_2:
+            player_winner = 1
+            score_winner = screen_controller.score_1
+            hits_winner = screen_controller.hits_1 
+        elif screen_controller.score_1 == screen_controller.score_2:
+            if screen_controller.hits_1 > screen_controller.hits_2:
+                player_winner = 1
+                score_winner = screen_controller.score_1
+                hits_winner = screen_controller.hits_1 
+            else:
+                player_winner = 2
+                score_winner = screen_controller.score_2
+                hits_winner = screen_controller.hits_2
+        else:
+            player_winner = 2
+            score_winner = screen_controller.score_2
+            hits_winner = screen_controller.hits_2
+        screen_controller.draw_text_center("O jogador " + str(player_winner) + " ganhou, com " + str(score_winner) + " acertos e " + str(hits_winner) + " bits corretos")
         pygame.display.update()
     pygame.quit()
 
