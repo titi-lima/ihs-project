@@ -4,8 +4,11 @@ from controllers.hits import HitsController
 from controllers.screen import ScreenController
 
 from utils.switches import SwitchController
+from utils.displays import DisplayController
 
 switch_controller = SwitchController()
+
+display_controller = DisplayController()
 
 # Função para gerar um novo número aleatório
 def gerar_numero_aleatorio():
@@ -61,7 +64,13 @@ while running:
                     running = False
                 else:
                     screen_controller.increase_phase()
-    
+    if screen_controller.phase < 4:
+        display_controller.set_left_display_number(switch_controller.get_switch_number_1())
+        display_controller.set_right_display_number(switch_controller.get_switch_number_2())
+    if screen_controller.phase == 4:
+        display_controller.set_left_display()
+        display_controller.set_right_display()
+
     # Desenha os scores na tela
     screen_controller.draw_text(str(screen_controller.score_2), (50, screen_controller.screen_height - 50))
     screen_controller.draw_text(str(screen_controller.score_1), (screen_controller.screen_width -  50, screen_controller.screen_height - 50))
