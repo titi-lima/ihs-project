@@ -36,8 +36,9 @@ class ScreenController:
     def draw_text_center(self, text):
         # Renderiza o texto
         texto = self.fonte.render(text, True, (255, 255, 255))
+        texto_width, texto_height = self.fonte.size(text)
         # Desenha o texto na tela
-        self.screen.blit(texto, (self.screen_width // 2, self.screen_height // 2))
+        self.screen.blit(texto, (self.screen_width // 2 - texto_width/2, self.screen_height // 2))
         pass
 
     def draw_text(self, text, position):
