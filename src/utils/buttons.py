@@ -17,3 +17,4 @@ class ButtonController:
         ioctl(fd, RD_PBUTTONS)
         red = os.read(fd, 4)  # read 4 bytes and store in red var
         return (int.from_bytes(red, 'little') >> button) & 1
+

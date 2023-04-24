@@ -8,7 +8,8 @@ class HitsController:
 
     def check_hits(self, switch_controller, target):
         print("Checking hits...")
-        print(target)
+        print(target[::-1])
+        target = target[::-1]
         # Get circles
         circles_1 = self.screen_controller.circles_1
         circles_2 = self.screen_controller.circles_2
