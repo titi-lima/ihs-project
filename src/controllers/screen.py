@@ -23,8 +23,8 @@ class ScreenController:
         pygame.display.set_caption("Batalha de Bits")
 
         # Define as posições dos círculos
-        self.circles_1 = [{'x': 50 + i * 25, 'y': self.screen_height - 100, 'color': (128, 128, 128)} for i in range(9)]
-        self.circles_2 = [{'x': self.screen_width - 50 - 8 * 25 + i * 25, 'y': self.screen_height - 100, 'color': (128, 128, 128)} for i in range(9)]
+        self.circles_1 = [{'x': self.screen_width - 50 - 8 * 25 + i * 25, 'y': self.screen_height - 100, 'color': (128, 128, 128)} for i in range(9)]
+        self.circles_2 = [{'x': 50 + i * 25, 'y': self.screen_height - 100, 'color': (128, 128, 128)} for i in range(9)]
 
         self.draw_circles(self.circles_1)
         self.draw_circles(self.circles_2)
@@ -62,8 +62,8 @@ class ScreenController:
         # Aumenta a fase do jogo
         self.phase += 1
         # Define as posições dos círculos
-        self.circles_1 = [{'x': 50 + i * 25, 'y': self.screen_height - 75 - 25 * (self.phase), 'color': (128, 128, 128)} for i in range(9)]
-        self.circles_2 = [{'x': self.screen_width - 50 - 8 * 25 + i * 25, 'y': self.screen_height - 75 - 25 * (self.phase), 'color': (128, 128, 128)} for i in range(9)]
+        self.circles_1 = [{'x': self.screen_width - 50 - 8 * 25 + i * 25, 'y': self.screen_height - 75 - 25 * (self.phase), 'color': (128, 128, 128)} for i in range(9)]
+        self.circles_2 = [{'x': 50 + i * 25, 'y': self.screen_height - 75 - 25 * (self.phase), 'color': (128, 128, 128)} for i in range(9)]
 
         self.draw_circles(self.circles_1)
         self.draw_circles(self.circles_2)

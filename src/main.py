@@ -43,7 +43,10 @@ def encerrar_jogo():
             player_winner = 2
             score_winner = screen_controller.score_2
             hits_winner = screen_controller.hits_2
-        screen_controller.draw_text_center("O jogador " + str(player_winner) + " ganhou, com " + str(score_winner) + " acertos e " + str(hits_winner) + " bits corretos")
+        if screen_controller.score_1 == screen_controller.score_2 and screen_controller.hits_1 == screen_controller.hits_2:
+            screen_controller.draw_text_center("Ocorreu um empate")
+        else:
+            screen_controller.draw_text_center("O jogador " + str(player_winner) + " ganhou, com " + str(score_winner) + " acertos e " + str(hits_winner) + " bits corretos")
         pygame.display.update()
     pygame.quit()
 
@@ -61,8 +64,8 @@ hits_controller = HitsController(screen_controller)
 screen_controller.draw_text_center(str(numero_aleatorio))
 
 # Desenha os scores na tela
-screen_controller.draw_text(str(screen_controller.score_1), (50, screen_controller.screen_height - 50))
-screen_controller.draw_text(str(screen_controller.score_2), (screen_controller.screen_width -  50, screen_controller.screen_height - 50))
+screen_controller.draw_text(str(screen_controller.score_1), (screen_controller.screen_width -  50, screen_controller.screen_height - 50))
+screen_controller.draw_text(str(screen_controller.score_2), (50, screen_controller.screen_height - 50))
 
 # Atualiza a tela do jogo
 pygame.display.update()
@@ -102,8 +105,8 @@ while running:
         display_controller.set_right_display()
 
     # Desenha os scores na tela
-    screen_controller.draw_text(str(screen_controller.score_2), (50, screen_controller.screen_height - 50))
-    screen_controller.draw_text(str(screen_controller.score_1), (screen_controller.screen_width -  50, screen_controller.screen_height - 50))
+    screen_controller.draw_text(str(screen_controller.score_1), (50, screen_controller.screen_height - 50))
+    screen_controller.draw_text(str(screen_controller.score_2), (screen_controller.screen_width - 50, screen_controller.screen_height - 50))
 
     # Atualiza a tela do jogo
     pygame.display.update()
